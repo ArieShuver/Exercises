@@ -8,7 +8,8 @@ class player{
     }
 
     showStats(){
-        return this.name +" " + this.arr;
+        const TimeSuccess = `----${this.name}---time:  ${this.arr}` 
+        return TimeSuccess;
     }
 }
 export{

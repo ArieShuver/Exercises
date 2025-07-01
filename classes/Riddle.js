@@ -11,10 +11,12 @@ class riddle {
 
     DisplaysTheRiddle() {
         console.log(this.taskDescription)
-        let answer = rl.question("Enter your answer:  ")
+    }
+    ask(){
+        let answer = rl.question("--Enter your answer--:  ")
         while (! CompatibilityCheck(this.correctAnswer, answer)) {
             console.log(this.taskDescription)
-            answer = rl.question("Enter your answer:  ")
+            answer = rl.question("--Enter your answer--:  ")
         }
     }
 }
