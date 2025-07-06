@@ -1,43 +1,33 @@
 import rl from "readline-sync";
 import { easytMath } from "./riddles/EasyMath.js"
 import { Mystery } from "./riddles/Mystery.js";
-import { player } from "./classes/Player.js"
+import Player from "./classes/Player.js"
 import { hard } from "./riddles/hard.js";
-
-
-game();
+import { getTime } from "./utils/time.js";
 
 
 
 
-function game() {
+ initGame();
+
+
+
+
+function initGame() {
     const name = bootPlty();
-    const start = returnTime();
+    const start = getTime();
     // level();
     // const a = new 
     AllRiddles();
-    const end = returnTime();
-    returnPlayer(name, start, end)
+    const end = getTime();
+    getPlayer(name, start, end)
 }
 
-
-
-
-
-function returnTime() {
-    const now = Date.now();
-    return now / 1000;
-}
-
-
-
-function returnPlayer(name, start, end) {
+function getPlayer(name, start, end) {
     const player1 = new player(name)
     player1.time(start, end)
     console.log(player1.showStats());
 }
-
-
 
 function bootPlty() {
     console.log("welcome the game");
@@ -62,12 +52,11 @@ function level() {
     }
 }
 
-
-function AllRiddles(){
-    const aar = [easytMath,Mystery,hard]
+function AllRiddles() {
+    const aar = [easytMath, Mystery, hard]
     for (const element of aar) {
-        element.DisplaysTheRiddle() 
-        element.ask()       
+        element.displaysTheRiddle()
+        element.ask()
     }
 }
 

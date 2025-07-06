@@ -1,7 +1,6 @@
 import rl from "readline-sync";
 
-class riddle {
-
+class Riddle {
     constructor(id, name, taskDescription, correctAnswer) {
         this.id = id;
         this.name = name;
@@ -9,23 +8,22 @@ class riddle {
         this.correctAnswer = correctAnswer;
     }
 
-    DisplaysTheRiddle() {
+    displaysTheRiddle() {
         console.log(this.taskDescription)
     }
-    ask(){
+    
+    //
+    ask() {
         let answer = rl.question("--Enter your answer--:  ")
-        while (! CompatibilityCheck(this.correctAnswer, answer)) {
+        while (!compatibilityCheck(this.correctAnswer, answer)) {
             console.log(this.taskDescription)
             answer = rl.question("--Enter your answer--:  ")
         }
     }
 }
 
-
-
-function CompatibilityCheck(item1, item2) {
+function compatibilityCheck(item1, item2) {
     return (item1 === item2)
 }
-export {
-    riddle
-}
+
+export default Riddle
