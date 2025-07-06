@@ -1,40 +1,53 @@
 
 import fs from "fs/promises";
-    
-    // Reading a file
+
+// Reading a file
 async function read(path) {
     try {
-        let read = await fs.readFile(path, "utf-8")
-        read = JSON.parse(read)
+        const read = await fs.readFile(path, "utf-8")
+        const readJson = JSON.parse(read)
         return read;
     }
     catch (error) {
         console.log(error)
-            return [];
-    
+        return [];
     }
     return [];
 }
 
 
-            //Added a riddle
-    async function create(path, data) {
-        let arr = await read(path)
-        console.log("arr:", arr);
-        arr.push(data)
-        arr = JSON.stringify(arr)
-        try {
-            return await fs.writeFile(path, arr)
-        }
-        catch (error) {
-            console.log(error)
-        }
+//Added a riddle
+async function create(path, data) {
+    let listRiddles = await read(path);
+    listRiddles.push(data);
+    listRiddles = JSON.stringify(listRiddles);
+    try {
+        return await fs.writeFile(path, listRiddles);
     }
-
-        //change a riddle
-    function update(nameReddle){
-
+    catch (error) {
+        console.log(error);
     }
+}
+
+//change a riddle
+async function update(nameRiddle, newRiddle, path) {
+    let listRiddles = await read(path);
+    listRiddles = JSON.stringify(listRiddles);
+    const indexRiddle = listReddles.indexOf(nameReddle);
+    if (indexRiddle !== -1) {
+        listRiddles[indexRiddle] = nameRiddle;
+    }
+    else {
+        console.log('The riddle is not found');
+    }
+    try {
+        return await fs.writeFile(path, listRiddles);
+    }
+    catch (error) {
+        console.log(error);
+    }
+}
+
 
 
 
